@@ -35,14 +35,21 @@ create-console-image: docker/images/console/Dockerfile
 console: create-console-image ## Run console command
 	$(call console, ${CLI_ARGS})
 
-analyze: create-console-image ## Launch analyze and Console reporting
+analyze: create-console-image ${ANALYZED_RELATIVE_SOURCE_PATH} pull-project ## Launch analyze and Console reporting
 	$(call console, -vvv analyze ${CONTAINER_VAR_SRC}/src)
 
-analyze-html: create-console-image ## Launch analyze and HTML reporting
+analyze-html: create-console-image ${ANALYZED_RELATIVE_SOURCE_PATH}  pull-project ## Launch analyze and HTML reporting
 	$(call console, -vvv analyze --no-output --htmlReport report.html ${CONTAINER_VAR_SRC}/src)
 
-analyze-json: create-console-image ## Launch quiet analyze and JSON reporting
-	$(call console, -vvv analyze --no-output --jsonReport report.json ${CONTAINER_VAR_SRC}/src)
+analyze-json: create-console-image ${ANALYZED_RELATIVE_SOURCE_PATH}  pull-project ## Launch quiet analyze and JSON reporting
+	$(call console, -vvv analyze --no-output --jsonReport var/report.json ${CONTAINER_VAR_SRC}/src)
+
+${ANALYZED_RELATIVE_SOURCE_PATH}:
+	git clone ${ANALYZED_SOURCE_REPO} ${ANALYZED_RELATIVE_SOURCE_PATH}
+	
+pull-project:
+	cd ${ANALYZED_RELATIVE_SOURCE_PATH} \
+	git pull
 
 #------------------------------------------------------------------------------
 

@@ -1,0 +1,17 @@
+#viewer-wrapper {
+    height: calc(100vh - 56px);
+    width: 100vh;
+}
+
+.viewer {
+    height: 100%;
+}
+
+.info {
+    list-style-type: none;
+    padding: 20px;
+    position: absolute;
+    top: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25)
+}

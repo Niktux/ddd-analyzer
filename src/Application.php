@@ -34,6 +34,7 @@ class Application extends \Onyx\Application
             // insert your loggers here
         ]));
         $this->register(new Providers\Twig());
+        $this->register(new Providers\Webpack());
     }
 
     protected function initializeServices(): void
@@ -233,5 +234,7 @@ class Application extends \Onyx\Application
 
     protected function mountControllerProviders(): void
     {
+        $this->mount('/', new Controllers\Home\Provider());
+        $this->mount('/api/', new Controllers\Api\Provider());
     }
 }

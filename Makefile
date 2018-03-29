@@ -14,10 +14,12 @@ export GROUP_ID
 
 include makefiles/composer.mk
 -include makefiles/console.mk
+include makefiles/docker.mk
 include makefiles/karma.mk
 include makefiles/phpunit.mk
 include makefiles/qa.mk
 include makefiles/whalephant.mk
+include makefiles/webpack.mk
 
 #------------------------------------------------------------------------------
 
